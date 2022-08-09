@@ -1,0 +1,50 @@
+﻿@model AppointmentsFormViewModel
+
+@{
+    ViewData["Title"] = "Patients Appointments Form";
+}
+
+<h2>Create Appointment</h2>
+
+<hr />
+
+<section class="row">
+    <div class="col-md-4">
+        <form method="POST" asp-action="AssignPatientsToDoctors">
+            <!-- <div class="form-group">
+                <label class="text-muted" asp-for="TicketReferenceId"></label>
+                <input type="text" class="form-control" asp-for="TicketReferenceId" maxlength="20" />
+                <span asp-validation-for="TicketReferenceId" class="text-danger"></span>
+            </div> -->
+            <div class="form-group">
+                <label class="text-muted" asp-for="PatientId"></label>
+                <select class="form-control" asp-for="PatientId" asp-items="@(new SelectList(Model.Patients, "Id", "FullName"))">
+                    <option></option>
+                </select>
+                <span asp-validation-for="PatientId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="text-muted" asp-for="DoctorId"></label>
+                <select class="form-control" asp-for="DoctorId" asp-items="@(new SelectList(Model.Doctors, "Id", "FullName"))">
+                    <option></option>
+                </select>
+                <span asp-validation-for="DoctorId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="text-muted" asp-for="AppointmentId"></label>
+                <select class="form-control" asp-for="AppointmentId" asp-items="@(new SelectList(Model.Appointments, "Id", "AppointmentDate"))">
+                    <option></option>
+                </select>
+                <span asp-validation-for="AppointmentId" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary mt-4">
+                <i class="bi bi-check"></i>
+                Save
+            </button>
+            <a asp-action="Index" class="btn btn-outline-secondary mt-4">
+                <i class="bi bi-x"></i>
+                Cancel
+            </a>
+        </form>
+    </div>
+</section>
